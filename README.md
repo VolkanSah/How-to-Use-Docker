@@ -314,4 +314,4 @@ Avoid using password authentication and use SSH keys instead.
 
 ## Additional Resources
 
-For more detailed information, refer to the official Docker documentation at [docker.com](https://www.docker.com).
+For more detailed information, go to the official Docker documentation at [docker.com](https://www.docker.com).
