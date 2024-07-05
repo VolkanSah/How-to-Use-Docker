@@ -1,7 +1,7 @@
 
 # How to Use Docker
 
-This guide provides detailed instructions on using Docker, including commands and solutions to common problems. For installation instructions, please refer to the official Docker documentation at [docker.com](https://www.docker.com).
+This guide provides detailed instructions on using Docker, including commands and solutions to common problems. For installation instructions, please go the official Docker documentation at [docker.com](https://www.docker.com).
 
 ## Table of Contents
 
