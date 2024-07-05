@@ -79,8 +79,8 @@ docker exec -it <container_id_or_name> <command>
 ### Stop and remove all containers
 
 ```bash
-docker stop $(docker ps -aq)
-docker rm -f $(docker ps -aq)
+sudo docker stop $(docker ps -aq)
+sudo docker rm -f $(docker ps -aq)
 ```
 
 ### Check which process is using a port
@@ -97,32 +97,19 @@ Sometimes restarting the Docker service can help resolve permission issues:
 sudo systemctl restart docker
 ```
 
-## Accessing Containers
+### Explicitly stop and remove containers
 
-### Access a running container
-
-```bash
-docker exec -it <container_id_or_name> /bin/bash
-```
-
-### Copy files between host and container
+Find the container IDs and stop and remove them individually:
 
 ```bash
-docker cp <source_path> <container_id_or_name>:<destination_path>
-docker cp <container_id_or_name>:<source_path> <destination_path>
+sudo docker stop d0ef74920923
+sudo docker rm -f d0ef74920923
+
+sudo docker stop 24f3cfc93042
+sudo docker rm -f 24f3cfc93042
 ```
 
-## Handling Container Issues
-
-### Check Docker logs for issues
-
-```bash
-sudo journalctl -u docker.service
-```
-
-### Debugging with Docker daemon
-
-Start Docker daemon in debug mode:
+### Start Docker daemon in debug mode
 
 ```bash
 sudo dockerd --debug
@@ -143,6 +130,27 @@ If problems persist, consider reinstalling Docker:
 ```bash
 sudo apt-get purge docker-ce docker-ce-cli containerd.io
 sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+### Check Docker logs for issues
+
+```bash
+sudo journalctl -u docker.service
+```
+
+## Accessing Containers
+
+### Access a running container
+
+```bash
+docker exec -it <container_id_or_name> /bin/bash
+```
+
+### Copy files between host and container
+
+```bash
+docker cp <source_path> <container_id_or_name>:<destination_path>
+docker cp <container_id_or_name>:<source_path> <destination_path>
 ```
 
 ## Docker-Compose
