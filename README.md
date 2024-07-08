@@ -44,6 +44,7 @@ This guide provides detailed instructions on using Docker, including commands an
     - [Use SSH Keys](#use-ssh-keys)
 9. [Additional Resources](#additional-resources)
 10. [Your Support](#your-support)
+11. [Force Stop and Remove All Containers](#force-stop-and-remove-all-containers)
 
 ## Docker Group Permissions
 
@@ -326,3 +327,53 @@ If you find this project useful and want to support it, there are several ways t
 **If you appreciate my work and would like to support it, please visit my [GitHub Sponsor page](https://github.com/sponsors/volkansah). Any type of support is warmly welcomed and helps me to further improve and expand my work.**
 
 Thank you for your support! ❤️
+
+## Force Stop and Remove All Containers
+
+For developers and users who need to forcefully stop and remove all Docker containers, especially when dealing with containers with misconfigured permissions:
+
+### Add user to Docker group
+
+Ensure your user is part of the Docker group to have the necessary permissions:
+
+---
+sudo usermod -aG docker your_username
+---
+
+### Switch to Docker group
+
+---
+newgrp docker
+---
+
+### Verify user is in Docker group
+
+---
+groups your_username
+---
+
+### Set permissions for Docker socket
+
+---
+sudo chmod 666 /var/run/docker.sock
+---
+
+### Restart Docker service (Snap-specific)
+
+---
+sudo systemctl restart snap.docker.dockerd.service
+---
+
+### Verify Docker installation
+
+---
+docker run hello-world
+---
+
+### Force stop and remove all containers
+
+---
+sudo docker stop $(sudo docker ps -aq)
+sudo docker rm $(sudo docker ps -aq) --force
+---
+
