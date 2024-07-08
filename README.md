@@ -199,7 +199,7 @@ services:
     image: php:7.4-apache
     container_name: lamp-web
     ports:
-      - "8003:80"
+      - "8080:80"
     volumes:
       - ./html:/var/www/html
     networks:
@@ -215,10 +215,8 @@ services:
       MYSQL_PASSWORD: example_password
     command: >
       --default-authentication-plugin=mysql_native_password
-      --init-file /docker-entrypoint-initdb.d/init.sql
     volumes:
       - ./mariadb_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - lamp-network
 
@@ -230,13 +228,14 @@ services:
       PMA_USER: phpmyadmin_user
       PMA_PASSWORD: phpmyadmin_password
     ports:
-      - "8004:80"
+      - "8081:80"
     networks:
       - lamp-network
 
 networks:
   lamp-network:
     driver: bridge
+
 ```
 
 ### Start Docker-Compose
