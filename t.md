@@ -17,5 +17,5 @@ sudo systemctl restart snap.docker.dockerd.service
 docker run hello-world
 
 # Erzwingen des Stoppens und Entfernens aller Container
-sudo docker stop $(sudo docker ps -aq) --force
+sudo docker stop $(sudo docker ps -aq)
 sudo docker rm $(sudo docker ps -aq) --force
