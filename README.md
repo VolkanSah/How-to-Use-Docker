@@ -1,8 +1,7 @@
-
 # How to Use Docker
 ![Docker How to use it](docker.jpg)
 
-This guide provides detailed instructions on using Docker, including commands and solutions to common problems. For installation instructions, please go the official Docker documentation at [docker.com](https://www.docker.com).
+This guide provides detailed instructions on using Docker, including commands and solutions to common problems. For installation instructions, please go to the official Docker documentation at [docker.com](https://www.docker.com).
 
 ## Table of Contents
 
@@ -44,6 +43,9 @@ This guide provides detailed instructions on using Docker, including commands an
     - [Setup Firewall](#setup-firewall)
     - [Use SSH Keys](#use-ssh-keys)
 9. [Additional Resources](#additional-resources)
+10. [Your Support](#your-support)
+
+
 
 ## Docker Group Permissions
 
