@@ -45,13 +45,11 @@ This guide provides detailed instructions on using Docker, including commands an
 9. [Additional Resources](#additional-resources)
 10. [Your Support](#your-support)
 
-
-
 ## Docker Group Permissions
 
 Ensure your user is part of the Docker group to have the necessary permissions:
 
-```bash
+```
 sudo usermod -aG docker $USER
 newgrp docker
 ```
@@ -60,49 +58,49 @@ newgrp docker
 
 ### List all Docker containers
 
-```bash
+```
 docker ps -a
 ```
 
 ### List running Docker containers
 
-```bash
+```
 docker ps
 ```
 
 ### Start a Docker container
 
-```bash
+```
 docker start <container_id_or_name>
 ```
 
 ### Stop a Docker container
 
-```bash
+```
 docker stop <container_id_or_name>
 ```
 
 ### Remove a Docker container
 
-```bash
+```
 docker rm <container_id_or_name>
 ```
 
 ### Force remove a Docker container
 
-```bash
+```
 docker rm -f <container_id_or_name>
 ```
 
 ### View logs of a Docker container
 
-```bash
+```
 docker logs <container_id_or_name>
 ```
 
 ### Execute a command in a running container
 
-```bash
+```
 docker exec -it <container_id_or_name> <command>
 ```
 
@@ -110,14 +108,14 @@ docker exec -it <container_id_or_name> <command>
 
 ### Stop and remove all containers
 
-```bash
+```
 sudo docker stop $(docker ps -aq)
 sudo docker rm -f $(docker ps -aq)
 ```
 
 ### Check which process is using a port
 
-```bash
+```
 sudo lsof -i -P -n | grep LISTEN
 ```
 
@@ -125,7 +123,7 @@ sudo lsof -i -P -n | grep LISTEN
 
 Sometimes restarting the Docker service can help resolve permission issues:
 
-```bash
+```
 sudo systemctl restart docker
 ```
 
@@ -133,7 +131,7 @@ sudo systemctl restart docker
 
 Find the container IDs and stop and remove them individually:
 
-```bash
+```
 sudo docker stop d0ef74920923
 sudo docker rm -f d0ef74920923
 
@@ -143,7 +141,7 @@ sudo docker rm -f 24f3cfc93042
 
 ### Start Docker daemon in debug mode
 
-```bash
+```
 sudo dockerd --debug
 ```
 
@@ -151,7 +149,7 @@ sudo dockerd --debug
 
 Ensure the user is in the Docker group:
 
-```bash
+```
 groups $USER
 ```
 
@@ -159,14 +157,14 @@ groups $USER
 
 If problems persist, consider reinstalling Docker:
 
-```bash
+```
 sudo apt-get purge docker-ce docker-ce-cli containerd.io
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
 ### Check Docker logs for issues
 
-```bash
+```
 sudo journalctl -u docker.service
 ```
 
@@ -174,13 +172,13 @@ sudo journalctl -u docker.service
 
 ### Access a running container
 
-```bash
+```
 docker exec -it <container_id_or_name> /bin/bash
 ```
 
 ### Copy files between host and container
 
-```bash
+```
 docker cp <source_path> <container_id_or_name>:<destination_path>
 docker cp <container_id_or_name>:<source_path> <destination_path>
 ```
@@ -191,7 +189,7 @@ docker cp <container_id_or_name>:<source_path> <destination_path>
 
 Create a `docker-compose.yml` file to define and run multi-container Docker applications:
 
-```yaml
+```
 version: '3.8'
 
 services:
@@ -243,20 +241,20 @@ networks:
 
 Navigate to the directory containing your `docker-compose.yml` file and start the services:
 
-```bash
+```
 cd /path/to/your/docker-compose/directory
 docker-compose up -d
 ```
 
 ### Check Docker-Compose service status
 
-```bash
+```
 docker-compose ps
 ```
 
 ### Stop Docker-Compose services
 
-```bash
+```
 docker-compose down
 ```
 
@@ -264,25 +262,25 @@ docker-compose down
 
 ### Backup MySQL/MariaDB database
 
-```bash
+```
 docker exec lamp-mariadb /usr/bin/mysqldump -u example_user --password=example_password example_db > backup.sql
 ```
 
 ### Restore MySQL/MariaDB database
 
-```bash
+```
 cat backup.sql | docker exec -i lamp-mariadb /usr/bin/mysql -u example_user --password=example_password example_db
 ```
 
 ### Backup website files
 
-```bash
+```
 tar czvf backup-html.tar.gz -C /path/to/your/html/files .
 ```
 
 ### Restore website files
 
-```bash
+```
 tar xzvf backup-html.tar.gz -C /path/to/your/html/files
 ```
 
@@ -292,7 +290,7 @@ tar xzvf backup-html.tar.gz -C /path/to/your/html/files
 
 Keep your system and Docker images updated regularly:
 
-```bash
+```
 sudo apt-get update && sudo apt-get upgrade
 docker pull php:7.4-apache
 docker pull mariadb:latest
@@ -303,7 +301,7 @@ docker pull phpmyadmin/phpmyadmin
 
 Use `ufw` (Uncomplicated Firewall) to restrict access to specific ports:
 
-```bash
+```
 sudo ufw allow OpenSSH
 sudo ufw allow 8003
 sudo ufw allow 8004
@@ -328,5 +326,3 @@ If you find this project useful and want to support it, there are several ways t
 **If you appreciate my work and would like to support it, please visit my [GitHub Sponsor page](https://github.com/sponsors/volkansah). Any type of support is warmly welcomed and helps me to further improve and expand my work.**
 
 Thank you for your support! ❤️
-
-##### Copyright S. Volkan Kücükbudak
