@@ -336,44 +336,44 @@ For developers and users who need to forcefully stop and remove all Docker conta
 
 Ensure your user is part of the Docker group to have the necessary permissions:
 
----
+```
 sudo usermod -aG docker your_username
----
+```
 
 ### Switch to Docker group
 
----
+```
 newgrp docker
----
+```
 
 ### Verify user is in Docker group
 
----
+```
 groups your_username
----
+```
 
 ### Set permissions for Docker socket
 
----
+```
 sudo chmod 666 /var/run/docker.sock
----
+```
 
 ### Restart Docker service (Snap-specific)
 
----
+```
 sudo systemctl restart snap.docker.dockerd.service
----
+```
 
 ### Verify Docker installation
 
----
+```
 docker run hello-world
----
+```
 
 ### Force stop and remove all containers
 
----
+```
 sudo docker stop $(sudo docker ps -aq)
 sudo docker rm $(sudo docker ps -aq) --force
----
+```
 
