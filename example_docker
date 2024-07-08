@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:7.4-apache
+    container_name: lamp-web
+    ports:
+      - "8003:80"
+    volumes:
+      - ./html:/var/www/html
+    networks:
+      - lamp-network
+
+  db:
+    image: mariadb:latest
+    container_name: lamp-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: example_root_password
+      MYSQL_DATABASE: example_db
+      MYSQL_USER: example_user
+      MYSQL_PASSWORD: example_password
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --init-file /docker-entrypoint-initdb.d/init.sql
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - lamp-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: lamp-phpmyadmin
+    environment:
+      PMA_HOST: lamp-mariadb
+      PMA_USER: phpmyadmin_user
+      PMA_PASSWORD: phpmyadmin_password
+    ports:
+      - "8004:80"
+    networks:
+      - lamp-network
+
+networks:
+  lamp-network:
+    driver: bridge
